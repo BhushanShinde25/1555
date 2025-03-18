@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌍 Game-Like Background */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #061a3a;
+  overflow-x: hidden;
+  transition: background-color 1s ease-in-out, color 1s ease-in-out;
+}
+
+/* 🏞️ Garden 3D Container */
+.garden-container {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* 🔮 Magic Text Effect */
+.magic-text {
+  background: linear-gradient(90deg, #ffcf40, #ffdd80, #ffcf40);
+  background-size: 200% 200%;
+  animation: shimmer 3s infinite linear;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ✨ Glowing Button */
+.glow-button {
+  background: linear-gradient(45deg, #1e860e, #32a852);
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0 0 20px rgba(50, 168, 82, 0.7);
+  transition: all 0.3s ease-in-out;
+}
+
+.glow-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(50, 168, 82, 1);
+}
+
+/* Default Light Mode */
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global Dark Mode */
+.dark body {
+  background-color: #121212;
+  color: white;
+}
+
+/* Navbar Styling */
+.dark nav {
+  background-color: #222;
+  color: white;
+}
+
+/* Links */
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+.dark a {
+  color: #1db954;
+}
+
+/* Buttons */
+button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dark button {
+  background-color: #1db954;
+  color: black;
+}
