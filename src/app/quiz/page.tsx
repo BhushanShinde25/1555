@@ -30,6 +30,18 @@ const QuizPage: React.FC = () => {
     }
   }, [timeLeft, quizFinished]);
 
+  useEffect(() => {
+    const bgMusic = new Audio("/sounds/quizMusic.mp3"); // Add your audio file in the public/sounds folder
+    bgMusic.loop = true;
+    bgMusic.volume = 0.5;
+    bgMusic.play();
+
+    return () => {
+      bgMusic.pause();
+      bgMusic.currentTime = 0; // Reset audio on unmount
+    };
+  }, []);
+
   const handleNext = () => {
     if (selectedOption === quizData[currentQuestion].answer) {
       setScore(score + 1);
@@ -91,6 +103,8 @@ const QuizPage: React.FC = () => {
                     margin: "10px",
                     cursor: "pointer",
                     borderRadius: "5px",
+                    fontSize: "1rem",
+                    padding: "10px 20px",
                   }}
                   onClick={() => setSelectedOption(option)}
                 >
