@@ -26,7 +26,7 @@ export default function Home() {
     <div style={darkMode ? styles.darkContainer : styles.lightContainer}>
       {/* Navbar */}
       <nav style={styles.navbar}>
-        <div style={styles.logo}>🌿 HERBAL GARDEN</div>
+        <div style={styles.logo}>🌿 VIRTUAL HERBAL GARDEN</div>
 
         {isMobile ? (
           <div style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
@@ -34,19 +34,32 @@ export default function Home() {
           </div>
         ) : (
           <ul style={styles.navLinks}>
-            {["/", "/forest", "/pond", "/quiz",].map((path, index) => (
-              <Link
-                key={index}
-                href={path}
-                style={{
-                  ...styles.navItem,
-                  color: pathname === path ? "#388E3C" : darkMode ? "#ffffff" : "#222", // Active color + dark mode handling
-                }}
-              >
-                {path === "/" ? "Home" : path.substring(1).charAt(0).toUpperCase() + path.substring(2)}
-              </Link>
-            ))}
-          </ul>
+  {["/", "/forest", "/pond", "/quiz", "/Empty", "/Chat Boat"].map((path, index) => (
+    <Link
+      key={index}
+      href={path}
+      style={{
+        ...styles.navItem,
+        padding: "10px 15px",
+        borderRadius: "8px",
+        color: pathname === path ? "#388E3C" : darkMode ? "#ffffff" : "#222",
+        background: pathname === path ? "#E8F5E9" : "transparent",
+        transition: "all 0.3s ease-in-out",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = "#1B5E20"; // Dark green text on hover
+        e.currentTarget.style.background = "#A5D6A7"; // Light green background on hover
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = pathname === path ? "#388E3C" : darkMode ? "#ffffff" : "#222";
+        e.currentTarget.style.background = pathname === path ? "#E8F5E9" : "transparent";
+      }}
+    >
+      {path === "/" ? "Home" : path.substring(1).charAt(0).toUpperCase() + path.substring(2)}
+    </Link>
+  ))}
+</ul>
+
         )}
 
         <div style={styles.navRight}>
@@ -55,6 +68,9 @@ export default function Home() {
             <Search size={18} style={styles.searchIcon} />
           </div> */}
           <FilterDropdown />
+          <Link href="/model" style={styles.AiButton}>
+          AI Model
+          </Link>
           <button onClick={() => setDarkMode(!darkMode)} style={styles.darkModeButton}>
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -109,6 +125,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     minHeight: "100vh",
     fontFamily: "'Poppins', sans-serif",
     transition: "all 0.3s ease-in-out",
+  },
+  AiButton:{
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "10px 16px",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold",
   },
   darkContainer: {
     backgroundColor: "#121212",

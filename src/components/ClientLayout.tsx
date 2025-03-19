@@ -1,22 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"; // Detect route changes
-import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
+import { usePathname } from "next/navigation";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(false);
-  const pathname = usePathname(); // Get current route
+  const pathname = usePathname();
 
   useEffect(() => {
-    setLoading(true); // Show loading screen
-    const timeout = setTimeout(() => setLoading(false), 1500); // Hide after 1.5s
+    setLoading(true); // Start loading on pathname change
+
+    const timeout = setTimeout(() => {
+      setLoading(false); // Stop loading after a short delay (imitates real loading)
+    }, 1000);
+
     return () => clearTimeout(timeout);
-  }, [pathname]); // Runs whenever the route changes
+  }, [pathname]); // Runs when the pathname changes
 
   return (
     <>
-      {loading && <LoadingScreen />} {/* Show Loading Animation */}
+      {/* Show loader only during navigation (not on initial load) */}
+      <LoadingScreen isLoading={loading && pathname !== "/"} />
       {children}
     </>
   );

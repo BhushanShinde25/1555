@@ -1,36 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
-export default function LoadingScreen() {
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(false), 2000); // Hide after 2 seconds
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!isVisible) return null;
+export default function LoadingScreen({ isLoading }: { isLoading: boolean }) {
+  if (!isLoading) return null;
 
   return (
     <div style={styles.container}>
-      {/* Left Tree */}
       <motion.div
-        initial={{ x: 0 }}
-        animate={{ x: "-100%" }}
-        transition={{ duration: 1 }}
-        style={styles.treeLeft}
+        initial={{ rotate: 0 }}
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+        style={styles.loader}
       />
-
-      {/* Right Tree */}
-      <motion.div
-        initial={{ x: 0 }}
-        animate={{ x: "100%" }}
-        transition={{ duration: 1 }}
-        style={styles.treeRight}
-      />
-
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -43,7 +25,7 @@ export default function LoadingScreen() {
   );
 }
 
-const styles: { [key: string]: React.CSSProperties } ={
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: "fixed",
     top: 0,
@@ -53,27 +35,22 @@ const styles: { [key: string]: React.CSSProperties } ={
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: "#a8df8e",
+    background: "linear-gradient(to right, #a8df8e, white)",
     zIndex: 9999,
     overflow: "hidden",
+    flexDirection: "column",
   },
-  treeLeft: {
-    position: "absolute",
-    left: 0,
-    width: "50vw",
-    height: "100vh",
-    background: "url('/images/tree-left.png') no-repeat center center/cover",
-  },
-  treeRight: {
-    position: "absolute",
-    right: 0,
-    width: "50vw",
-    height: "100vh",
-    background: "url('/images/tree-right.png') no-repeat center center/cover",
+  loader: {
+    width: "100px",
+    height: "100px",
+    border: "10px solid white",
+    borderTop: "10px solid green",
+    borderRadius: "50%",
+    boxSizing: "border-box",
   },
   text: {
-    position: "absolute",
-    fontSize: "2rem",
+    marginTop: "20px",
+    fontSize: "1.5rem",
     color: "#fff",
     fontWeight: "bold",
   },

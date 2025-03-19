@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 
 const leaves = Array.from({ length: 10 }, (_, i) => i);
 
@@ -14,7 +14,7 @@ const FallingLeaf = () => {
           animate={{ y: "100vh", opacity: 1 }}
           transition={{ duration: Math.random() * 3 + 2, repeat: Infinity, ease: "linear", delay: Math.random() * 2 }}
         >
-          🍂
+           🍀
         </motion.div>
       ))}
     </div>
@@ -34,6 +34,7 @@ const styles = {
   leaf: {
     position: "absolute",
     fontSize: "24px",
+    color: "green"
   },
 };
 
