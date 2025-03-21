@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Search, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import FilterDropdown from "@/components/FilterDropdown";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
