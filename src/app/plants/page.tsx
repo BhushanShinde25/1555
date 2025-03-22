@@ -99,7 +99,6 @@ const plants = [
     fullDescription:
       "Ashwagandha is an adaptogenic herb that helps the body manage stress, improve cognitive function, and enhance physical endurance. It is widely used in Ayurvedic medicine.",
   },
-  
 ];
 
 export default function PlantCards() {
@@ -108,7 +107,9 @@ export default function PlantCards() {
   return (
     <div>
       <h1 style={styles.heading}>Healing Plants</h1>
-      <button onClick={() => window.history.back()} style={styles.backButton}>Go Back</button>
+      <button onClick={() => window.history.back()} style={styles.backButton}>
+        Go Back
+      </button>
       <div style={styles.container}>
         {plants.map((plant) => (
           <div key={plant.id} style={styles.card}>
@@ -119,10 +120,14 @@ export default function PlantCards() {
             />
             <h2 style={styles.title}>{plant.name}</h2>
             <p style={styles.description}>
-              {expanded === plant.id ? plant.fullDescription : plant.shortDescription}
+              {expanded === plant.id
+                ? plant.fullDescription
+                : plant.shortDescription}
             </p>
             <button
-              onClick={() => setExpanded(expanded === plant.id ? null : plant.id)}
+              onClick={() =>
+                setExpanded(expanded === plant.id ? null : plant.id)
+              }
               style={styles.button}
             >
               {expanded === plant.id ? "Read Less" : "Read More"}

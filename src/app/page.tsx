@@ -5,7 +5,7 @@ import { Menu, X, Moon, Sun } from "lucide-react";
 import FilterDropdown from "@/components/FilterDropdown";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import ModelCanvas from "@/components/ModelCanvas";
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,32 +34,47 @@ export default function Home() {
           </div>
         ) : (
           <ul style={styles.navLinks}>
-  {["/", "/forest", "/pond", "/quiz", "/Empty", "/Chat Boat"].map((path, index) => (
-    <Link
-      key={index}
-      href={path}
-      style={{
-        ...styles.navItem,
-        padding: "10px 15px",
-        borderRadius: "8px",
-        color: pathname === path ? "#388E3C" : darkMode ? "#ffffff" : "#222",
-        background: pathname === path ? "#E8F5E9" : "transparent",
-        transition: "all 0.3s ease-in-out",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = "#1B5E20"; // Dark green text on hover
-        e.currentTarget.style.background = "#A5D6A7"; // Light green background on hover
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = pathname === path ? "#388E3C" : darkMode ? "#ffffff" : "#222";
-        e.currentTarget.style.background = pathname === path ? "#E8F5E9" : "transparent";
-      }}
-    >
-      {path === "/" ? "Home" : path.substring(1).charAt(0).toUpperCase() + path.substring(2)}
-    </Link>
-  ))}
-</ul>
-
+            {["/", "/forest", "/pond", "/quiz", "/Chat Boat"].map(
+              (path, index) => (
+                <Link
+                  key={index}
+                  href={path}
+                  style={{
+                    ...styles.navItem,
+                    padding: "10px 15px",
+                    borderRadius: "8px",
+                    color:
+                      pathname === path
+                        ? "#388E3C"
+                        : darkMode
+                        ? "#ffffff"
+                        : "#222",
+                    background: pathname === path ? "#E8F5E9" : "transparent",
+                    transition: "all 0.3s ease-in-out",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#1B5E20"; // Dark green text on hover
+                    e.currentTarget.style.background = "#A5D6A7"; // Light green background on hover
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color =
+                      pathname === path
+                        ? "#388E3C"
+                        : darkMode
+                        ? "#ffffff"
+                        : "#222";
+                    e.currentTarget.style.background =
+                      pathname === path ? "#E8F5E9" : "transparent";
+                  }}
+                >
+                  {path === "/"
+                    ? "Home"
+                    : path.substring(1).charAt(0).toUpperCase() +
+                      path.substring(2)}
+                </Link>
+              )
+            )}
+          </ul>
         )}
 
         <div style={styles.navRight}>
@@ -68,10 +83,17 @@ export default function Home() {
             <Search size={18} style={styles.searchIcon} />
           </div> */}
           <FilterDropdown />
-          <Link href="/model" style={styles.AiButton}>
-          AI Model
+          <Link
+            href="https://flask-herbal-app.onrender.com"
+            target="_blank"
+            style={styles.AiButton}
+          >
+            AI Model
           </Link>
-          <button onClick={() => setDarkMode(!darkMode)} style={styles.darkModeButton}>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            style={styles.darkModeButton}
+          >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </div>
@@ -80,18 +102,28 @@ export default function Home() {
       {/* Mobile Menu (Only when hamburger is clicked) */}
       {menuOpen && isMobile && (
         <ul style={styles.mobileMenu}>
-          {["/", "/forest", "/pond", "/explore", "/contact"].map((path, index) => (
-            <Link
-              key={index}
-              href={path}
-              style={{
-                ...styles.mobileMenuItem,
-                color: pathname === path ? "#388E3C" : darkMode ? "#ffffff" : "#222",
-              }}
-            >
-              {path === "/" ? "Home" : path.substring(1).charAt(0).toUpperCase() + path.substring(2)}
-            </Link>
-          ))}
+          {["/", "/forest", "/pond", "/explore", "/contact"].map(
+            (path, index) => (
+              <Link
+                key={index}
+                href={path}
+                style={{
+                  ...styles.mobileMenuItem,
+                  color:
+                    pathname === path
+                      ? "#388E3C"
+                      : darkMode
+                      ? "#ffffff"
+                      : "#222",
+                }}
+              >
+                {path === "/"
+                  ? "Home"
+                  : path.substring(1).charAt(0).toUpperCase() +
+                    path.substring(2)}
+              </Link>
+            )
+          )}
         </ul>
       )}
 
@@ -99,10 +131,14 @@ export default function Home() {
       <section style={styles.heroSection}>
         <div style={styles.heroText}>
           <h1 style={styles.heroTitle}>
-            Explore the wonders of <span style={styles.ayurvedaText}> Ayurveda </span> with our Virtual Herbal Garden
+            Explore the wonders of{" "}
+            <span style={styles.ayurvedaText}> Ayurveda </span> with our Virtual
+            Herbal Garden
           </h1>
           <p style={styles.heroSubtitle}>
-            A digital gateway to nature's healing secrets – explore, learn, and experience the magic of medicinal plants in an interactive 3D environment.
+            A digital gateway to nature's healing secrets – explore, learn, and
+            experience the magic of medicinal plants in an interactive 3D
+            environment.
           </p>
           <Link href="/garden" style={styles.exploreButton}>
             Explore →
@@ -110,7 +146,9 @@ export default function Home() {
         </div>
 
         <div style={styles.heroImage}>
-          <img src="/images/herbal_plants.png" alt="Herbal Plant" style={styles.plantImage} />
+          <div style={styles.modelCanvasWrapper}>
+            <ModelCanvas />
+          </div>
         </div>
       </section>
     </div>
@@ -126,7 +164,18 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontFamily: "'Poppins', sans-serif",
     transition: "all 0.3s ease-in-out",
   },
-  AiButton:{
+  modelCanvasWrapper: {
+    marginTop: "50px",
+    width: "100%",
+    height: "400px",
+    borderRadius: "10px",
+    overflow: "hidden",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  AiButton: {
     backgroundColor: "#4CAF50",
     color: "white",
     padding: "10px 16px",
@@ -165,7 +214,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     textDecoration: "none",
     fontSize: "1.2rem",
-    fontWeight:"revert-layer"
+    fontWeight: "revert-layer",
   },
   navRight: {
     display: "flex",
@@ -240,6 +289,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     minWidth: "400px",
   },
   plantImage: {
+    marginTop: "100px",
     width: "450px",
     borderRadius: "10px",
   },
@@ -264,4 +314,3 @@ const styles: { [key: string]: React.CSSProperties } = {
     textDecoration: "none",
   },
 };
-
