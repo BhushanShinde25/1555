@@ -4,6 +4,7 @@ import React, { useState, useEffect, CSSProperties, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import FallingLeaf from "@/components/FallingLeaf";
+import Navbar from "@/components/Navbar";
 
 const quizData = [
   { question: "What is another name for Tulsi?", options: ["Holy Basil", "Neem", "Aloe Vera", "Ashwagandha"], answer: "Holy Basil" },
@@ -59,6 +60,7 @@ const QuizPage: React.FC = () => {
 
   return (
     <div >
+      <Navbar />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -130,13 +132,13 @@ const styles: Record<string, CSSProperties> = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "94vh",
+    height: "76vh",
     background: "#ffffff",
     color: "#2e7d32",
     textAlign: "center",
     padding: "20px",
     position: "relative",
-    backgroundImage: "url('/images/quizBg.png')", // Add your background image URL here
+    backgroundImage: "url('/images/quizBg.png')", 
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

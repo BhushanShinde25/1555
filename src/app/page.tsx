@@ -1,5 +1,5 @@
 "use client";
-
+import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import FilterDropdown from "@/components/FilterDropdown";
@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div style={darkMode ? styles.darkContainer : styles.lightContainer}>
       {/* Navbar */}
-      <nav style={styles.navbar}>
+     {/* <nav style={styles.navbar}>
         <div style={styles.logo}>🌿 VIRTUAL HERBAL GARDEN</div>
 
         {isMobile ? (
@@ -78,10 +78,6 @@ export default function Home() {
         )}
 
         <div style={styles.navRight}>
-          {/* <div style={styles.searchContainer}>
-            <input type="text" placeholder="Search..." style={styles.searchInput} />
-            <Search size={18} style={styles.searchIcon} />
-          </div> */}
           <FilterDropdown />
           <Link
             href="https://flask-herbal-app.onrender.com"
@@ -98,6 +94,9 @@ export default function Home() {
           </button>
         </div>
       </nav>
+       */}
+        <Navbar/>
+      
 
       {/* Mobile Menu (Only when hamburger is clicked) */}
       {menuOpen && isMobile && (
@@ -192,51 +191,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontFamily: "'Poppins', sans-serif",
     transition: "all 0.3s ease-in-out",
   },
-  navbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "16px",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-    flexWrap: "wrap",
-  },
+  
   logo: {
     fontSize: "24px",
     fontWeight: "600",
   },
-  navLinks: {
-    display: "flex",
-    gap: "20px",
-    listStyle: "none",
-    fontSize: "16px",
-  },
-  navItem: {
-    cursor: "pointer",
-    textDecoration: "none",
-    fontSize: "1.2rem",
-    fontWeight: "revert-layer",
-  },
-  navRight: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  },
-  searchContainer: {
-    position: "relative",
-  },
-  searchInput: {
-    padding: "8px 12px",
-    border: "1px solid #ccc",
-    borderRadius: "20px",
-    width: "150px",
-  },
-  searchIcon: {
-    position: "absolute",
-    right: "10px",
-    top: "50%",
-    transform: "translateY(-50%)",
-    color: "#777",
-  },
+
   darkModeButton: {
     cursor: "pointer",
     background: "none",

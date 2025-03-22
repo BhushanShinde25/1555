@@ -8,7 +8,6 @@ export default function Home() {
   const router = useRouter();
   return (
     <>
-    
     <main className={styles.mainContainer}>
       <button onClick={() => router.back()} className={styles.backButton}>Back</button>
       <Spline className={styles.pond}  scene="https://prod.spline.design/cBumvamKuuOdeRtX/scene.splinecode" />
