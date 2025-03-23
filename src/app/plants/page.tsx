@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
 import { useState } from "react";
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -106,10 +107,11 @@ export default function PlantCards() {
 
   return (
     <div>
+      <Navbar />
       <h1 style={styles.heading}>Healing Plants</h1>
-      <button onClick={() => window.history.back()} style={styles.backButton}>
+      {/* <button onClick={() => window.history.back()} style={styles.backButton}>
         Go Back
-      </button>
+      </button> */}
       <div style={styles.container}>
         {plants.map((plant) => (
           <div key={plant.id} style={styles.card}>

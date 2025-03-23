@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
 import { useState } from "react";
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -67,13 +68,54 @@ const styles: { [key: string]: React.CSSProperties } = {
 };
 
 const plants = [
-  { id: 1, name: "Kalonji (Black Seed)", images: ["/images/blackseed2.jpg", "/images/blackseed.jpg"], shortDescription: "A powerful medicinal seed.", fullDescription: "Kalonji is known for its anti-inflammatory, immune-boosting, and digestive benefits." },
-  { id: 2, name: "Saffron", images: ["/images/saffron.jpg", "/images/saffron2.jpg"], shortDescription: "A prized spice for beauty and health.", fullDescription: "Saffron is used for skin care, mood enhancement, and as a powerful antioxidant." },
-  { id: 3, name: "Licorice (Mulethi)", images: ["/images/licorice.jpg", "/images/licorice2.jpg"], shortDescription: "A natural remedy for throat and digestion.", fullDescription: "Licorice is known to soothe sore throats, improve gut health, and boost immunity." },
-  { id: 4, name: "Henna", images: ["/images/henna.jpg", "/images/henna2.webp"], shortDescription: "A natural hair and skin conditioner.", fullDescription: "Henna is widely used for hair dyeing, cooling therapy, and skin treatments." },
-  { id: 5, name: "Amla (Indian Gooseberry)", images: ["/images/amla.jpg", "/images/amla2.jpg"], shortDescription: "A superfood rich in Vitamin C.", fullDescription: "Amla is used for hair growth, immunity boosting, and anti-aging properties." },
-  { id: 6, name: "Ajwain (Carom Seeds)", images: ["/images/ajwain.webp", "/images/ajwain2.jpg"], shortDescription: "A digestive aid with strong aroma.", fullDescription: "Ajwain helps in digestion, relieves acidity, and fights infections." },
-  
+  {
+    id: 1,
+    name: "Kalonji (Black Seed)",
+    images: ["/images/blackseed2.jpg", "/images/blackseed.jpg"],
+    shortDescription: "A powerful medicinal seed.",
+    fullDescription:
+      "Kalonji is known for its anti-inflammatory, immune-boosting, and digestive benefits.",
+  },
+  {
+    id: 2,
+    name: "Saffron",
+    images: ["/images/saffron.jpg", "/images/saffron2.jpg"],
+    shortDescription: "A prized spice for beauty and health.",
+    fullDescription:
+      "Saffron is used for skin care, mood enhancement, and as a powerful antioxidant.",
+  },
+  {
+    id: 3,
+    name: "Licorice (Mulethi)",
+    images: ["/images/licorice.jpg", "/images/licorice2.jpg"],
+    shortDescription: "A natural remedy for throat and digestion.",
+    fullDescription:
+      "Licorice is known to soothe sore throats, improve gut health, and boost immunity.",
+  },
+  {
+    id: 4,
+    name: "Henna",
+    images: ["/images/henna.jpg", "/images/henna2.webp"],
+    shortDescription: "A natural hair and skin conditioner.",
+    fullDescription:
+      "Henna is widely used for hair dyeing, cooling therapy, and skin treatments.",
+  },
+  {
+    id: 5,
+    name: "Amla (Indian Gooseberry)",
+    images: ["/images/amla.jpg", "/images/amla2.jpg"],
+    shortDescription: "A superfood rich in Vitamin C.",
+    fullDescription:
+      "Amla is used for hair growth, immunity boosting, and anti-aging properties.",
+  },
+  {
+    id: 6,
+    name: "Ajwain (Carom Seeds)",
+    images: ["/images/ajwain.webp", "/images/ajwain2.jpg"],
+    shortDescription: "A digestive aid with strong aroma.",
+    fullDescription:
+      "Ajwain helps in digestion, relieves acidity, and fights infections.",
+  },
 ];
 
 export default function UnaniPlantCards() {
@@ -81,18 +123,28 @@ export default function UnaniPlantCards() {
 
   return (
     <div>
+      <Navbar />
+
       <h1 style={styles.heading}>Unani Healing Plants</h1>
-      <button onClick={() => window.history.back()} style={styles.backButton}>Go Back</button>
+      {/* <button onClick={() => window.history.back()} style={styles.backButton}>Go Back</button> */}
       <div style={styles.container}>
         {plants.map((plant) => (
           <div key={plant.id} style={styles.card}>
-            <img src={expanded === plant.id ? plant.images[1] : plant.images[0]} alt={plant.name} style={styles.image} />
+            <img
+              src={expanded === plant.id ? plant.images[1] : plant.images[0]}
+              alt={plant.name}
+              style={styles.image}
+            />
             <h2 style={styles.title}>{plant.name}</h2>
             <p style={styles.description}>
-              {expanded === plant.id ? plant.fullDescription : plant.shortDescription}
+              {expanded === plant.id
+                ? plant.fullDescription
+                : plant.shortDescription}
             </p>
             <button
-              onClick={() => setExpanded(expanded === plant.id ? null : plant.id)}
+              onClick={() =>
+                setExpanded(expanded === plant.id ? null : plant.id)
+              }
               style={styles.button}
             >
               {expanded === plant.id ? "Read Less" : "Read More"}

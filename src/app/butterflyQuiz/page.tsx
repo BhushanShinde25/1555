@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
 
 // Define the structure of the quiz questions
 type Question = {
@@ -11,9 +12,21 @@ type Question = {
 };
 
 const quizData: Question[] = [
-  { question: "Which part of a plant absorbs water?", options: ["Leaves", "Roots", "Flowers", "Stem"], answer: "Roots" },
-  { question: "What gas do plants release during photosynthesis?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Methane"], answer: "Oxygen" },
-  { question: "Which pigment in plants helps in photosynthesis?", options: ["Hemoglobin", "Chlorophyll", "Melanin", "Carotene"], answer: "Chlorophyll" },
+  {
+    question: "Which part of a plant absorbs water?",
+    options: ["Leaves", "Roots", "Flowers", "Stem"],
+    answer: "Roots",
+  },
+  {
+    question: "What gas do plants release during photosynthesis?",
+    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Methane"],
+    answer: "Oxygen",
+  },
+  {
+    question: "Which pigment in plants helps in photosynthesis?",
+    options: ["Hemoglobin", "Chlorophyll", "Melanin", "Carotene"],
+    answer: "Chlorophyll",
+  },
 ];
 
 // Define butterfly colors
@@ -54,13 +67,23 @@ const ButterflyQuiz: React.FC = () => {
 
   return (
     <div style={styles.quizContainer}>
+      <Navbar />
       {/* Animated Butterfly */}
       <motion.div
         style={{
           ...styles.butterfly,
-          filter: butterflyEffect === "sparkle" ? "drop-shadow(0 0 10px gold)" : butterflyEffect === "dim" ? "opacity(0.5)" : "none",
+          filter:
+            butterflyEffect === "sparkle"
+              ? "drop-shadow(0 0 10px gold)"
+              : butterflyEffect === "dim"
+              ? "opacity(0.5)"
+              : "none",
         }}
-        animate={{ x: `${butterflyPosition.x}%`, y: `${butterflyPosition.y}%`, scale: butterflyEffect === "sparkle" ? 1.5 : 1 }}
+        animate={{
+          x: `${butterflyPosition.x}%`,
+          y: `${butterflyPosition.y}%`,
+          scale: butterflyEffect === "sparkle" ? 1.5 : 1,
+        }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       >
         {butterflyColors[Math.floor(Math.random() * butterflyColors.length)]}
@@ -73,7 +96,10 @@ const ButterflyQuiz: React.FC = () => {
           {quizData[currentQuestion].options.map((option, index) => (
             <motion.button
               key={index}
-              style={{ ...styles.option, ...(selectedOption === option ? styles.selected : {}) }}
+              style={{
+                ...styles.option,
+                ...(selectedOption === option ? styles.selected : {}),
+              }}
               onClick={() => handleAnswer(option)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

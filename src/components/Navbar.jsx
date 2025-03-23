@@ -31,32 +31,68 @@ export default function Navbar() {
         </div>
       ) : (
         <ul style={styles.navLinks}>
-          {["/", "/forest", "/pond", "/quiz", "/Empty", "/Chat Boat"].map((path, index) => (
-            <Link
-              key={index}
-              href={path}
-              style={{
-                ...styles.navItem,
-                background: pathname === path ? "#E8F5E9" : "transparent",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "green";
-                e.currentTarget.style.color = "white";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = pathname === path ? "#E8F5E9" : "transparent";
-                e.currentTarget.style.color = "#222";
-              }}
-            >
-              {path === "/" ? "Home" : path.substring(1).charAt(0).toUpperCase() + path.substring(2)}
-            </Link>
-          ))}
+          {["/", "/forest", "/pond", "/quiz", "chatbot"].map((path, index) => {
+            if (path === "chatbot") {
+              return (
+                <a
+                  key={index}
+                  href="https://virtualherbalchatbot-hmpdf2dugzccczddqktgt3.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    ...styles.navItem,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "green";
+                    e.currentTarget.style.color = "white";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = "#222";
+                  }}
+                >
+                  Chat Bot
+                </a>
+              );
+            }
+
+            return (
+              <Link
+                key={index}
+                href={path}
+                style={{
+                  ...styles.navItem,
+                  background: pathname === path ? "#E8F5E9" : "transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "green";
+                  e.currentTarget.style.color = "white";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background =
+                    pathname === path ? "#E8F5E9" : "transparent";
+                  e.currentTarget.style.color = "#222";
+                }}
+              >
+                {path === "/"
+                  ? "Home"
+                  : path.substring(1).charAt(0).toUpperCase() +
+                    path.substring(2)}
+              </Link>
+            );
+          })}
         </ul>
       )}
 
       <div style={styles.navRight}>
         <FilterDropdown />
-        <Link href="/model" style={styles.AiButton}>AI Model</Link>
+        <Link
+          href="https://flask-herbal-app.onrender.com"
+          target="_blank"
+          style={styles.AiButton}
+        >
+          AI Model
+        </Link>
       </div>
     </nav>
   );
