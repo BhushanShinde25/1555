@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { PondModel } from "../ModelView/PondModel";
+import { Html } from "@react-three/drei";
 
 export default function ModelCanvas() {
   return (
@@ -21,7 +22,13 @@ export default function ModelCanvas() {
         maxDistance={6}
         minDistance={5}
       />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <Html>
+            <div>Loading...</div>
+          </Html>
+        }
+      >
         <group scale={4.5}>
           <PondModel />
         </group>
