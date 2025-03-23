@@ -15,8 +15,6 @@ export default function ModelCanvas() {
       }}
     >
       <ambientLight intensity={0.5} />
-      /** * ? To limit model movement in y-axis: "maxPolarAngle" used. * ? To
-      limit model movement in Zoom: "maxDistance" and "minDistance" used. */
       <OrbitControls
         maxPolarAngle={Math.PI / 2}
         autoRotate={true}
@@ -27,7 +25,7 @@ export default function ModelCanvas() {
       <group scale={4.5}>
         <PondModel />
       </group>
-      <Environment preset="sunset" /> //! For sunlight and night mode
+      <Environment preset="sunset" />
     </Canvas>
   );
 }

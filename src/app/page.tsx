@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div style={darkMode ? styles.darkContainer : styles.lightContainer}>
       {/* Navbar */}
-     {/* <nav style={styles.navbar}>
+      {/* <nav style={styles.navbar}>
         <div style={styles.logo}>🌿 VIRTUAL HERBAL GARDEN</div>
 
         {isMobile ? (
@@ -95,8 +95,7 @@ export default function Home() {
         </div>
       </nav>
        */}
-        <Navbar/>
-      
+      <Navbar />
 
       {/* Mobile Menu (Only when hamburger is clicked) */}
       {menuOpen && isMobile && (
@@ -135,8 +134,8 @@ export default function Home() {
             Herbal Garden
           </h1>
           <p style={styles.heroSubtitle}>
-            A digital gateway to nature's healing secrets – explore, learn, and
-            experience the magic of medicinal plants in an interactive 3D
+            A digital gateway to nature&apos;s healing secrets – explore, learn,
+            and experience the magic of medicinal plants in an interactive 3D
             environment.
           </p>
           <Link href="/garden" style={styles.exploreButton}>
@@ -191,7 +190,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontFamily: "'Poppins', sans-serif",
     transition: "all 0.3s ease-in-out",
   },
-  
+
   logo: {
     fontSize: "24px",
     fontWeight: "600",
